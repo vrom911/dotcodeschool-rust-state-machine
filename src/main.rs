@@ -1,12 +1,22 @@
 mod balances;
 mod system;
 
+// These are the concrete types we will use in our simple state machine.
+// Modules are configured for these types directly, and they satisfy all of our
+// trait requirements.
+mod types {
+	pub type AccountId = String;
+	pub type Balance = u128;
+}
+
+use types::{AccountId, Balance};
+
 // This is our main Runtime.
 // It accumulates all of the different pallets we want to use.
 #[derive(Debug)]
 pub struct Runtime {
 	system: system::Pallet,
-	balances: balances::Pallet,
+	balances: balances::Pallet<AccountId, Balance>,
 }
 
 impl Runtime {
@@ -39,4 +49,6 @@ fn main() {
 	// second transaction
 	runtime.system.inc_nonce(&alice);
 	let _res = runtime.balances.transfer(alice, charlie, 20).map_err(|e| eprintln!("{}", e));
+
+	println!("{:#?}", runtime);
 }
