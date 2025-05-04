@@ -7,15 +7,17 @@ mod system;
 mod types {
 	pub type AccountId = String;
 	pub type Balance = u128;
+	pub type BlockNumber = u32;
+	pub type Nonce = u32;
 }
 
-use types::{AccountId, Balance};
+use types::{AccountId, Balance, BlockNumber, Nonce};
 
 // This is our main Runtime.
 // It accumulates all of the different pallets we want to use.
 #[derive(Debug)]
 pub struct Runtime {
-	system: system::Pallet,
+	system: system::Pallet<AccountId, BlockNumber, Nonce>,
 	balances: balances::Pallet<AccountId, Balance>,
 }
 
