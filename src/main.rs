@@ -116,14 +116,14 @@ fn main() {
 		extrinsics: vec![
 			support::Extrinsic {
 				caller: alice.clone(),
-				call: RuntimeCall::Balances(balances::Call::Transfer {
+				call: RuntimeCall::Balances(balances::Call::transfer {
 					to: bob.clone(),
 					amount: 30,
 				}),
 			},
 			support::Extrinsic {
 				caller: alice.clone(),
-				call: RuntimeCall::Balances(balances::Call::Transfer { to: charlie, amount: 20 }),
+				call: RuntimeCall::Balances(balances::Call::transfer { to: charlie, amount: 20 }),
 			},
 		],
 	};
@@ -133,13 +133,13 @@ fn main() {
 		extrinsics: vec![
 			support::Extrinsic {
 				caller: alice.clone(),
-				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
+				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
 					claim: "Hello, world!",
 				}),
 			},
 			support::Extrinsic {
 				caller: bob.clone(),
-				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
+				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
 					claim: "Hello, world!",
 				}),
 			},
@@ -151,13 +151,13 @@ fn main() {
 		extrinsics: vec![
 			support::Extrinsic {
 				caller: alice,
-				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::RevokeClaim {
+				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::revoke_claim {
 					claim: "Hello, world!",
 				}),
 			},
 			support::Extrinsic {
 				caller: bob,
-				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::CreateClaim {
+				call: RuntimeCall::ProofOfExistence(proof_of_existence::Call::create_claim {
 					claim: "Hello, world!",
 				}),
 			},
